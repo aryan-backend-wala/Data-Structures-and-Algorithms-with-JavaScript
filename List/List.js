@@ -66,12 +66,14 @@ class List {
   }
 
   end(){
-    this.pos = this.listSize - 1
+    this.pos = this.listSize
   }
 
   prev(){
     if(this.pos > 0){
       --this.pos
+    } else {
+      return null
     }
   }
 
