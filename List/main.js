@@ -1,29 +1,63 @@
 import List from "./List.js";
+import fs from 'fs'
 
-const names = new List();
-names.append("Clayton");
-names.append("Raymond");
-names.append("Cynthia");
-names.append("Jennifer");
-names.append("Bryan");
-names.append("Danny");
+const txt = './List/films.txt'
 
-// names.front(); // Start at the beginning
-// do {
-//   console.log(names.getElement());
-// } while (names.next() !== null); 
+const movies = createArr(txt)
 
+class Customer {
+  constructor(name, movie) {
+    this.name = name;
+    this.movie = movie;
+  }
+}
 
-// for(names.end(); names.prev() !== null;){
-//   print(names.currPos())
-//   print(names.getElement())
-// }
+const movieList = new List();
+const customers = new List();
 
-// names.end()
-// names.prev()
-// names.prev()
-// names.prev()
-// print(names.getElement())
+for (let i = 0; i < movies.length; i++) {
+  movieList.append(movies[i])
+}
+
+print("Available movies: \n"); 
+displayList(movieList);
+checkOut("Jane Doe", "The Godfather", movieList, customers);
+print("\nCustomer Rentals: \n");
+displayList(customers)
+print("Available movies: \n"); 
+displayList(movieList)
+
+function displayList(list) {
+  for (list.end(); list.prev() !== null;) {
+    if (list.getElement() instanceof Customer) {
+      print(list.getElement()['name'] + ", " + list.getElement()['movie'])
+    } else {
+      print(list.getElement())
+    }
+  }
+}
+
+function checkOut(name, movie, filmList, customerList) {
+  if (movieList.contains(movie)) {
+    let c = new Customer(name, movie)
+    customerList.append(c);
+    filmList.remove(movie)
+  } else {
+    print(movie + ' is not available.')
+  }
+}
+
+function createArr(file) {
+  const arr = read(file).split('\n')
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].trim();
+  }
+  return arr
+}
+
+function read(filename) {
+  return fs.readFileSync(filename, 'utf-8');
+}
 
 function print(msg) {
   console.log(msg)
