@@ -1,41 +1,51 @@
 export class Queue {
-  constructor(){
+  constructor() {
     this.datastore = [];
   }
 
-  enqueue(element){
+  enqueue(element) {
     this.datastore.push(element)
   }
 
-  dequeue(){
-    return this.datastore.shift();
+  dequeue() {
+    let priority = this.datastore[0].code;
+    console.log('starting priority', priority)
+    for (let i = 1; i < this.datastore.length; i++) {
+      if (this.datastore[i].code < priority) {
+        priority = i;
+        console.log('priority', priority)
+      }
+    }
+    return this.datastore.splice(priority, 1)
   }
 
-  front(){
+  front() {
     return this.datastore[0]
   }
 
-  back(){
+  back() {
     return this.datastore[this.datastore.length - 1]
   }
 
-  toString(){
+  toString() {
     let retStr = '';
-    for(let i=0;i<this.datastore.length;i++){
-      retStr += this.datastore[i] + "\n";
+    for (let i = 0; i < this.datastore.length; i++) {
+      retStr += this.datastore[i].name + " code: "
+        + this.datastore[i].code + "\n";
+
     }
     return retStr;
   }
 
-  empty(){
-    if(this.datastore.length === 0){
+  empty() {
+    if (this.datastore.length === 0) {
       return true
     } else {
       return false;
     }
   }
 
-  count(){
+  count() {
     return this.datastore.length
   }
 }
