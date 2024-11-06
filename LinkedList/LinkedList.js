@@ -4,6 +4,7 @@ class Node {
   constructor(element) {
     this.element = element;
     this.next = null;
+    this.previous = null;
   }
 }
 
@@ -24,6 +25,7 @@ export class LList {
     var newNode = new Node(newElement);
     var current = this.find(item);
     newNode.next = current.next;
+    newNode.previous = current
     current.next = newNode;
   }
 
@@ -35,19 +37,39 @@ export class LList {
     }
   }
 
-  findPrevious(item) {
+  // findPrevious(item) {
+  //   let currNode = this.head;
+  //   while (!(currNode.next === null) &&
+  //     (currNode.next.element !== item)) {
+  //     currNode = currNode.next
+  //   }
+  //   return currNode;
+  // }
+
+  remove(item) {
+    let currNode = this.find(item)
+    if (!currNode.next !== null) {
+      currNode.previous.next = currNode.next
+      currNode.next.previous = currNode.previous
+      currNode.next = null
+      currNode.previous = null
+    }
+  }
+
+  findLast() {
     let currNode = this.head;
-    while (!(currNode.next === null) &&
-      (currNode.next.element !== item)) {
+    while (!(currNode.next == null)) {
       currNode = currNode.next
     }
     return currNode;
   }
 
-  remove(item) {
-    let prevNode = this.findPrevious(item)
-    if(!(prevNode.next === null)){
-      prevNode.next = prevNode.next.next;
+  dispReverse() {
+    var currNode = this.head;
+    currNode = this.findLast();
+    while (!(currNode.previous == null)) {
+      print(currNode.element);
+      currNode = currNode.previous;
     }
   }
 }

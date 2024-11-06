@@ -1,0 +1,3 @@
+JavaScript: A high-level programming language.
+abc: A process of mapping data to fixed sizes.
+bbb: A process of mapping data to fixed sizesas.

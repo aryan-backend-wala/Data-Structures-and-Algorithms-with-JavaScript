@@ -7,6 +7,8 @@ cities.insert("Russellville", "Conway");
 cities.insert("Carlisle", "Russellville");
 cities.insert("Alma", "Carlisle");
 cities.display();
-console.log();
+print("");
 cities.remove("Carlisle");
 cities.display();
+print("");
+cities.dispReverse()
