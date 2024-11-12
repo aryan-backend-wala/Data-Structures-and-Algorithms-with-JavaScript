@@ -108,10 +108,8 @@ export class BST {
   }
 
   remove(data) {
-    console.log('Root: ', this.root)
-    console.log(`Attempting to remove ${data} from the tree.`);
+    console.log(`Attempting to remove ${data} from the tree.`); 
     this.root = this.removeNode(this.root, data);
-    console.log('Root: ', this.root)
   }
 
   removeNode(node, data) {
@@ -149,12 +147,10 @@ export class BST {
     } else if (data < node.data) {
       console.log(`${data} is less than ${node.data}. Moving to the left child.`);
       node.left = this.removeNode(node.left, data);
-      console.log('Node Left: ', node.left)
       return node;
     } else {
       console.log(`${data} is greater than ${node.data}. Moving to the right child.`);
       node.right = this.removeNode(node.right, data);
-      console.log('Node Right: ', node.right)
       return node;
     }
   }
