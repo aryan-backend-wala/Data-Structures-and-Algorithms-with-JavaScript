@@ -7,9 +7,14 @@ let start = new Date().getTime();
 nums.shellsort();
 let stop = new Date().getTime();
 let elapsed = stop - start;
-print("Elapsed time for the insertion sort on " +
-  numElements + " elements is: " + elapsed + " milliseconds.");
-
+print("Shellsort with hard-coded gap sequence: " + elapsed + " ms.");
+nums.clear();
+nums.setData();
+start = new Date().getTime();
+nums.shellsortD();
+stop = new Date().getTime();
+elapsed = stop - start
+print("Shellsort with dynamic gap sequence: " + elapsed + " ms.");
 
 function print(msg) {
   console.log(msg)

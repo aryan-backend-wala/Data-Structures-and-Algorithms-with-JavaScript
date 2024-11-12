@@ -3,7 +3,7 @@ export class CArray {
     this.dataStore = [];
     this.pos = 0;
     this.numElements = numElements;
-    this.gaps = [5, 3, 1];
+    this.gaps = [103, 97, 61, 37, 13, 7, 1];
 
     for (let i = 0; i < numElements; i++) {
       this.dataStore[i] = i;
@@ -92,5 +92,21 @@ export class CArray {
         this.dataStore[j] = temp;
       }
     }
-  } 
+  }
+
+  shellsortD() {
+    let N = this.dataStore.length;
+    let h = 1;
+    while (h < N / 3) {
+      h = 3 * h + 1;
+    }
+    while (h >= 1) {
+      for (let i = h; i < N; i++) {
+        for (let j = i; j >= h && this.dataStore[j] < this.dataStore[j - h]; j -= h) {
+          this.swap(this.dataStore, j, j - h)
+        }
+      }
+      h = (h - 1) / 3
+    }
+  }
 }
