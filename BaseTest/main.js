@@ -1,11 +1,13 @@
 import { CArray } from "./CArray.js";
 
-const numElements = 6;
+const numElements = 100000;
 const nums = new CArray(numElements);
 nums.setData()
-print(nums.toString())
+const start = new Date().getTime()
 nums.mergeSort()
-print(nums.toString())
+const stop = new Date().getTime();
+const elapsed = stop - start;
+print("Shellsort with dynamic gap sequence: " + elapsed + " ms.");
 
 
 function print(msg) {

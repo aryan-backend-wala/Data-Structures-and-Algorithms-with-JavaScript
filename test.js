@@ -1,5 +1,35 @@
 const arr = [61, 85, 19, 88, 68, 8, 70, 29];
-const arrB = [8,29,19,85,68,61,88,70]
+const arrB = [8, 29, 19, 85, 68, 61, 88, 70]
+
+function qSort(list) {
+  if (list.length === 0) {
+    return [];
+  }
+
+  const lesser = [];
+  const greater = [];
+
+  const pivot = list[0];
+
+  for (let i = 1; i < list.length; i++) {
+    if (list[i] < pivot) {
+      lesser.push(list[i])
+    } else {
+      greater.push(list[i])
+    }
+  }
+  console.log('Left Side: ', lesser)
+  console.log('Pivot: ', pivot)
+  console.log('Right Side: ', greater)
+  return qSort(lesser).concat(pivot, qSort(greater))
+}
+
+const a = []
+for(let i=0;i<5;i++){
+  a[i] = Math.floor((Math.random() * 100) + 1)
+}
+console.log(a)
+console.log(qSort(a))
 
 function shellsort(arr) {
   const newArr = [...arr];
@@ -68,7 +98,7 @@ function insertionSort(arr) {
     temp = newArr[i]
     j = i;
     while (j > 0 && (newArr[j - 1] >= temp)) {
-      console.log(newArr[j-1] + ' >= ' + temp)
+      console.log(newArr[j - 1] + ' >= ' + temp)
       newArr[j] = newArr[j - 1]
       j--
     }
@@ -78,7 +108,7 @@ function insertionSort(arr) {
   return newArr
 }
 
-insertionSort(arr)
+// insertionSort(arr)
 
 function swap(arr, index1, index2) {
   let temp = arr[index1];

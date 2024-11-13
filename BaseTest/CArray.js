@@ -111,8 +111,6 @@ export class CArray {
   }
 
   mergeArrays(arr, startLeft, stopLeft, startRight, stopRight) {
-    console.log(`Merging subarrays from indices ${startLeft}-${stopLeft - 1} and ${startRight}-${stopRight - 1}`);
-
     let rightArr = new Array(stopRight - startRight + 1);
     let leftArr = new Array(stopLeft - startLeft + 1);
     let k = startRight;
@@ -131,9 +129,6 @@ export class CArray {
     rightArr[rightArr.length - 1] = Infinity;
     leftArr[leftArr.length - 1] = Infinity;
 
-    console.log("Left array before merging:", leftArr);
-    console.log("Right array before merging:", rightArr);
-
     let m = 0;
     let n = 0;
 
@@ -145,24 +140,18 @@ export class CArray {
         arr[k] = rightArr[n];
         n++;
       }
-      console.log(`Merged array at step (index ${k}):`, arr);
     }
-
-    console.log("Merged array after merging:", arr.slice(startLeft, stopRight));
   }
 
   mergeSort() {
     if (this.dataStore.length < 2) {
-      console.log("Array is already sorted.");
       return;
     }
 
-    console.log("Starting merge sort on:", this.dataStore);
     let step = 1;
     let left, right;
 
     while (step < this.dataStore.length) {
-      console.log(`Merge pass with step size: ${step}`);
       left = 0;
       right = step;
 
@@ -175,11 +164,27 @@ export class CArray {
       if (right < this.dataStore.length) {
         this.mergeArrays(this.dataStore, left, left + step, right, this.dataStore.length);
       }
-
-      console.log(`Array after merging with step size ${step}:`, this.dataStore);
       step *= 2;
     }
+  }
 
-    console.log("Sorted array:", this.dataStore);
+  qSort() {
+    if(this.dataStore.length === 0){
+      return [];
+    }
+
+    const lesser = [];
+    const greater = [];
+
+    const pivot = this.dataStore[0];
+
+    for(let i=1;i<this.dataStore.length;i++){
+      if(this.dataStore[i] < pivot){
+        lesser.push(this.dataStore[i])
+      } else {
+        greater.push(this.dataStore[i])
+      }
+    }
+    return this.qSort()
   }
 }
